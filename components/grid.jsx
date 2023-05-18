@@ -2,9 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { IMAGE_URL } from '../lib/constants';
 import { withGrid } from '@pantheon-systems/nextjs-kit';
-import styles from "./grid.module.css";
+import styles from './grid.module.css';
 
-const GradientPlaceholder = () => (
+export const GradientPlaceholder = () => (
 	<div className={styles.gradientPlaceholder} />
 );
 
@@ -16,14 +16,14 @@ export const ArticleGridItem = ({
 }) => {
 	const imgSrc = article?.field_media_image?.field_media_image?.uri?.url || '';
 	return (
-		<Link
+        <Link
 			passHref
 			href={`${multiLanguage ? `/${article.path.langcode || locale}` : ''}${
 				article.path.alias
 			}`}
 		>
-			<div className={styles.card}>
-				<div className={styles.cardImg}>
+			<div className={`${styles.card} rounded-lg cursor-pointer h-full overflow-x-hidden`}>
+				<div className={`${styles.cardImg} shrink-0 h-40 relative`}>
 					{imgSrc !== '' ? (
 						<Image
 							src={IMAGE_URL + imgSrc}
@@ -35,12 +35,10 @@ export const ArticleGridItem = ({
 						<GradientPlaceholder />
 					)}
 				</div>
-				<h2 className={styles.cardTitle}>
-					{article.title} &rarr;
-				</h2>
+				<h2 className={`${styles.cardTitle} font-semibold py-4 px-6`}>{article.title} &rarr;</h2>
 			</div>
 		</Link>
-	);
+    );
 };
 
 export const ArticleGrid = withGrid(ArticleGridItem);
