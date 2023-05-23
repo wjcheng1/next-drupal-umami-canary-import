@@ -15,7 +15,7 @@ export const RecipeGridItem = ({ content: recipe, multiLanguage, locale }) => {
 			}`}
 		>
 			<div className={`${styles.card} rounded-lg cursor-pointer h-full overflow-x-hidden`}>
-				<div className={`${styles.cardImg} shrink-0 h-40 relative`}>
+				<div className='shrink-0 h-40 relative'>
 					{imgSrc !== null ? (
 						<Image
 							src={IMAGE_URL + imgSrc}
